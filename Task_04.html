@@ -1,0 +1,82 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>IFE JavaScript Task 04</title>
+        <style type="text/css">
+            #formation li{
+                float: left;
+                margin: 10px;
+                width: 50px;
+                height: 25px;
+                line-height: 25px;
+                list-style: none;
+                background-color: red;
+                color: #ffffff;
+                text-align: center;
+            }
+        </style>
+    </head>
+<body>
+    <div>
+        <input type="text" id="data">
+        <button id="leftin">左侧入</button>
+        <button id="rightin">右侧入</button>
+        <button id="leftout">左侧出</button>
+        <button id="rightout">右侧出</button>
+    </div>
+    <div>
+        <ul id="formation">
+        </ul>
+    </div>
+
+<script>
+        var data = document.getElementById("data");
+        var ul = document.getElementById("formation");
+        var leftin = document.getElementById("leftin");
+        var rightin = document.getElementById("rightin");
+        var leftout = document.getElementById("leftout");
+        var rightout = document.getElementById("rightout");
+    leftin.onclick = function (){
+        if (data.value.length<=0){    ////判断是否输入内容，即data值的长度是否为0
+            alert("请输入数据");
+            return false;
+        }
+        var li = document.createElement("li");//建立li节点，并写入数据
+        li.innerHTML = data.value;
+        ul.insertBefore(li,ul.firstChild);//在第一个子节点前插入数据
+    }
+    rightin.onclick = function(){
+        if (data.value.length<=0){    //判断是否输入内容，即data值的长度是否为0
+            alert("请输入数据");
+            return false;
+        }
+        var li = document.createElement("li");//建立li节点，并写入数据
+        li.innerHTML = data.value;
+        ul.appendChild(li);//添加子节点，默认从末端添加
+    }
+    leftout.onclick = function(){
+        if (ul.hasChildNodes()){    //hasChildNodes()判断是否含有子节点
+            alert(ul.firstChild.innerHTML);  //弹出第一个子元素节点内容的提示框
+            ul.removeChild(ul.firstChild);//移除第一个子节点
+        }
+        else{
+            alert("队列为空");
+            return false;
+        }
+    }
+    rightout.onclick = function(){
+        if (ul.hasChildNodes()){
+            alert(ul.lastChild.innerHTML);//弹出最后一个子元素节点内容的提示框
+            ul.removeChild(ul.lastChild);//移除第最后一个子节点
+        }
+        else{
+            alert("队列为空");
+            return false;
+        }
+    }
+
+</script>
+
+</body>
+</html>
